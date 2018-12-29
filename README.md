@@ -2,6 +2,14 @@
 
 ![成品图.png](https://i.loli.net/2018/12/29/5c2745559cd53.png)
 
+# 项目准备
+
+项目准备：
+1. 安装Node.JS环境。下载我的源码。
+2. 安装Truffle,并且solidity的编译器版本在0.5.0以下。
+3. 在默认的浏览器中安装MetaMask，并使用Truffle提供的助记词（candy maple cake sugar pudding cream honey rich smooth crumble sweet treat）生成的账号。
+
+
 # 使用说明
 
 1. 本项目需要运行在windows环境，及Solidity版本需要在0.5.0版本以下。
