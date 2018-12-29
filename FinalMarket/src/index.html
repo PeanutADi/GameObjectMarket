@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Game Object Market</title>
+
+    <script>
+    function getFullPath(obj) {
+        if (obj) {
+            //Internet Explorer
+            if (window.navigator.userAgent.indexOf("MSIE") >= 1) {
+                obj.select();
+                return document.selection.createRange().text;
+            }
+            //Firefox
+            if (window.navigator.userAgent.indexOf("Firefox") >= 1) {
+                if (obj.files) {
+                    return obj.files.item(0).getAsDataURL();
+                }
+                return obj.value;
+            }
+
+            //兼容chrome、火狐等，HTML5获取路径
+            if (typeof FileReader != "undefined") {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                  document.getElementById("path").value =e.target.result + "" ;
+                }
+                reader.readAsDataURL(obj.files[0]);
+            } else if (browserVersion.indexOf("SAFARI") > -1) {
+                alert("暂时不支持Safari浏览器!");
+            }
+
+        }
+    }
+
+    function showPic(obj) {
+      var fullPath = getFullPath(obj);
+      if (fullPath) {
+          document.getElementById("path").value = fullPath + "" ;
+        }
+    }
+    </script>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      body{ text-align:center}
+      input{
+        border: 1px solid #ccc;
+        padding: 7px 0px;
+        border-radius: 3px; /*css3属性IE不支持*/
+        padding-left:5px;
+      }
+      input:focus{
+        border-color: #66afe9;
+        outline: 0;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+      }
+    </style>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-push-2">
+          <h1 class="text-center">Game Object Market</h1>
+          <hr/>
+          <br/>
+        </div>
+      </div>
+
+      <center>
+        <input type="text" id="path" style="display:none;" >
+        <h5>请选择装备图片</h5><input type="file" onchange="showPic(this)">
+      </center>
+      <br>
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-push-2">
+          <input id="nameText" type="text" placeholder="Input Name">
+          <input id="priceInput" type="text" placeholder="Input Price">
+          <button class="btn btn-default btn-submit" type="submit">Submit</button>
+          <hr/>
+          <br/>
+        </div>
+      </div>
+
+      <div id="petsRow" class="row">
+        <!-- PETS LOAD HERE -->
+      </div>
+    </div>
+
+    <div id="petTemplate" style="display: none;">
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="panel panel-default panel-pet">
+          <div class="panel-heading">
+            <h3 class="panel-title">Scrappy</h3>
+          </div>
+          <div class="panel-body">
+            <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true">
+            <br/><br/>
+            <!--[if lt IE 9]>
+            <strong>Breed</strong>: <span class="pet-breed">Golden Retriever</span><br/>
+            <strong>Location</strong>: <span class="pet-location">Warren, MI</span><br/><br/>
+            <strong>Owner</strong>: <span class="pet-location">3</span><br/>
+            <!-->
+            <strong>Price</strong>: <span class="pet-age">3</span><br/>
+            <button class="btn btn-default btn-adopt" type="button" data-id="0" data-price="2">Buy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
