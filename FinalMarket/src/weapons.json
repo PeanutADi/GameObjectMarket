@@ -1,0 +1,22 @@
+[
+  {
+      "name": "板甲",
+      "picture": "images/banjia.jpg",
+      "age": 20
+  },
+  {
+        "name": "无尽之刃",
+        "picture": "images/wujin.jpg",
+        "age": 80
+  },
+  {
+      "name": "护符",
+      "picture": "images/护符.jpg",
+      "age": 5
+  },
+  {
+      "name": "神秘盒子",
+      "picture": "images/hezi.jpg",
+      "age": 50
+    }
+]

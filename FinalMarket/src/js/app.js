@@ -3,6 +3,22 @@ App = {
   contracts: {},
 
   init: async function() {
+    // Load GameObjects
+    $.getJSON('../weapons.json', function(data) {
+      var petsRow = $('#petsRow');
+      var petTemplate = $('#petTemplate');
+
+      for (i = 0; i < data.length; i ++) {
+        submitId++;
+        petTemplate.find('.panel-title').text(data[i].name);
+        petTemplate.find('img').attr('src', data[i].picture);
+        petTemplate.find('.pet-age').text(data[i].age);
+        petTemplate.find('.btn-adopt').attr('data-id', submitId);
+        petTemplate.find('.btn-adopt').attr('data-price', data[i].age);
+
+        petsRow.append(petTemplate.html());
+      }
+    });
     return await App.initWeb3();
   },
 
